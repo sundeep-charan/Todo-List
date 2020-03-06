@@ -67,7 +67,7 @@ userSchema.pre("save", function(next) {
   }
 
   // I didnt add this next() here at all. So if there is no next method here, then the code is like, only if the doc's password is changed, should you be allowed to change the document. Thats hilarious right? How the heck did I forget this lol..
-  next();
+  else next();
   // THIS WAS THE FRICKING BUG .......
 });
 
