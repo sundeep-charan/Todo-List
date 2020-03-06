@@ -1,0 +1,19 @@
+<h1>Update TODO: {{todo.title}}</h1>
+<form action={{constructUpdateAPI}} method="POST">
+  <input type="text" name="title" value="{{todo.title}}" required placeholder="Todo title" />
+  <input type="text" name="body" value="{{todo.body}}" required placeholder="Todo body" />
+  {{!-- Another bug found, on line numbers 3 and 4 at value attribute !!!!!!.
+  
+      If you watch closely on V3, the title and body was chipping off and only the first word was present on the value attribute. To avoid that, just enclose the moustache braces with quotes and you will be fine. I found out this on a stack overflow solution. Haillll stack overflow lol. 
+  --}}
+  <label for="isCompleted">Is completed ?</label>
+  <input id="isCompleted" type="checkbox" name="isCompleted" {{#if todo.isCompleted}} checked {{/if}} />
+  {{!-- LOOK ABOVE on line 6 on checked attribute. something is added !!!!
+  
+   This is another bug I had fixed, watch carefully in V3, for every single todo in update page, even if the isCompleted attribute is false, it would be still checked. Thats because handlebars suck and they doesnt accept booleans. They convert them to strings. So we have to put a manual if check inside the tag itself.
+  
+  If you dont know already, inorder to precheck a checkbox, you can use the "checked" attribute. So what we are saying now is precheck the checkbox only if the todo.isCompleted property leads to true. (if todo.isCompleted is equivalent to if todo.isCompleted === true)
+   
+  --}}
+  <input type="submit" value="Update todo">
+</form>
